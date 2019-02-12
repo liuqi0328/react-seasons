@@ -29,17 +29,25 @@ class App extends React.Component {
       console.log('My component was just updated - it rerendered!');
   }
 
-  // We have to define render in every react component.
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
-      return <div>Error: {this.state.errorMessage}</div>
+        return <div>Error: {this.state.errorMessage}</div>
     }
 
     if (!this.state.errorMessage && this.state.lat) {
-        return <SeasonDisplay lat={this.state.lat} />
+      return <SeasonDisplay lat={this.state.lat} />
     }
 
-    return <Spinner />;
+    return <Spinner message="Please accept location request" />;
+  }
+
+  // We have to define render in every react component.
+  render() {
+    return (
+      <div className="border red">
+        {this.renderContent()}
+      </div>
+    )
   }
 }
 
