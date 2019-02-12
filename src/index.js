@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 class App extends React.Component {
   // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
+//   constructor(props) {
+//     super(props);
 
-    // THIS IS THE ONLY TIME we do direct assignment to this.state
-    // Initialization
-    this.state = { lat: null, errorMessage: '' };
-  }
+//     // THIS IS THE ONLY TIME we do direct assignment to this.state
+//     // Initialization
+//     this.state = { lat: null, errorMessage: '' };
+//   }
+
+  state = { lat: null, errorMessage: '' };
 
   componentDidMount() {
       // console.log('My component was rendered to the screen!');
@@ -32,10 +36,10 @@ class App extends React.Component {
     }
 
     if (!this.state.errorMessage && this.state.lat) {
-        return <div>Latitude: {this.state.lat}</div>
+        return <SeasonDisplay lat={this.state.lat} />
     }
 
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 }
 
